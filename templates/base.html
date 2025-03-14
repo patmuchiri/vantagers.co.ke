@@ -83,22 +83,43 @@
             border-bottom: 2px solid var(--accent-color);
         }
 
+        /* Hamburger Menu for Mobile */
+        .hamburger {
+            display: none; /* Hidden by default */
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .hamburger .line {
+            width: 25px;
+            height: 3px;
+            background-color: white;
+            margin: 4px 0;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+
         /* Responsive Navbar for Mobile */
         @media (max-width: 768px) {
-            .navbar {
-                flex-direction: column;
-                align-items: center;
-                text-align: center;
+            .hamburger {
+                display: flex; /* Show hamburger menu on mobile */
             }
 
             .nav-links {
+                display: none; /* Hide nav links by default on mobile */
                 flex-direction: column;
                 gap: 0.5rem;
                 margin-top: 1rem;
+                background-color: rgba(0, 31, 63, 0.9); /* Semi-transparent background */
+                padding: 1rem;
+                border-radius: 5px;
+                position: absolute;
+                top: 70px; /* Adjust based on header height */
+                right: 1rem;
+                width: 200px;
             }
 
-            .logo-img {
-                height: 40px; /* Smaller logo for mobile */
+            .nav-links.active {
+                display: flex; /* Show nav links when hamburger is clicked */
             }
         }
 
@@ -119,13 +140,6 @@
             margin: 0;
             font-size: 0.9rem; /* Smaller font size for mobile */
         }
-
-        /* Responsive Footer for Mobile */
-        @media (max-width: 768px) {
-            .site-footer p {
-                font-size: 0.85rem;
-            }
-        }
     </style>
 </head>
 <body>
@@ -135,7 +149,12 @@
             <div class="logo">
                 <img src="{{ url_for('static', filename='images/logo.jpg') }}" alt="VRS Logo" class="logo-img">
             </div>
-            <ul class="nav-links">
+            <div class="hamburger" onclick="toggleMenu()">
+                <div class="line"></div>
+                <div class="line"></div>
+                <div class="line"></div>
+            </div>
+            <ul class="nav-links" id="navLinks">
                 <li><a href="{{ url_for('home') }}" class="{% if request.endpoint == 'home' %}active{% endif %}">Home</a></li>
                 <li><a href="{{ url_for('about') }}" class="{% if request.endpoint == 'about' %}active{% endif %}">About</a></li>
                 <li><a href="{{ url_for('services') }}" class="{% if request.endpoint == 'services' %}active{% endif %}">Services</a></li>
@@ -165,6 +184,12 @@
             duration: 800,
             easing: 'ease-in-out',
         });
+
+        // Mobile Menu Toggle
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
     </script>
 </body>
 </html>
