@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Vantage Secretaries & Registrars (VRS)</title>
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <!-- AOS Animation Library -->
+    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+    <!-- Font Awesome for Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #001F3F;
+            --secondary-color: #800000;
+            --accent-color: #FFD700;
+            --text-color: #fff;
+            --bg-color: #f9f9f9;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Contact Info Section */
+        .contact-info {
+            padding: 4rem 1rem;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .info-card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .info-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .info-card i {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--accent-color);
+            transition: transform 0.3s ease;
+        }
+
+        .info-card:hover i {
+            transform: scale(1.2);
+        }
+
+        .info-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--accent-color);
+        }
+
+        .info-card p {
+            margin: 0;
+            font-size: 0.9rem;
+            color: #e0e0e0;
+        }
+
+        /* Office Locations */
+        .office-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 1rem;
+        }
+
+        .office-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .office-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .office-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .office-card .content {
+            padding: 1.5rem;
+        }
+
+        .map-container {
+            height: 200px;
+            border-radius: 0 0 15px 15px;
+            overflow: hidden;
+        }
+
+        /* Inquiry Form */
+        .inquiry-form {
+            background: var(--primary-color);
+            padding: 3rem 1rem;
+        }
+
+        .form-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            border-color: var(--accent-color);
+            box-shadow: 0 0 0 2px rgba(255, 215, 0, 0.3);
+        }
+
+        .form-group i {
+            position: absolute;
+            right: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--accent-color);
+            transition: color 0.3s ease;
+        }
+
+        /* Footer */
+        .site-footer {
+            background: var(--secondary-color);
+            color: white;
+            padding: 1.5rem 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <header class="site-header">
+        <nav class="navbar">
+            <div class="logo">
+                <img src="{{ url_for('static', filename='images/logo.jpg') }}" alt="VRS Logo" class="logo-img">
+            </div>
+            <ul class="nav-links">
+                <li><a href="{{ url_for('home') }}">Home</a></li>
+                <li><a href="{{ url_for('about') }}">About</a></li>
+                <li><a href="{{ url_for('services') }}">Services</a></li>
+                <li><a href="{{ url_for('contact') }}" class="active">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <h1>Contact Us</h1>
+        <p>We're here to assist you! Reach out to us through the details below or submit an inquiry.</p>
+    </section>
+
+    <!-- Contact Information Section -->
+    <section class="contact-info">
+        <div class="info-grid">
+            <div class="info-card" data-aos="zoom-in" data-aos-delay="100">
+                <i class="fas fa-phone-volume"></i>
+                <h3>Call Us</h3>
+                <p>+254 750 110 118</p>
+            </div>
+            <div class="info-card" data-aos="zoom-in" data-aos-delay="200">
+                <i class="fas fa-envelope-open-text"></i>
+                <h3>Email Us</h3>
+                <p>info@vantagers.co.ke</p>
+            </div>
+            <div class="info-card" data-aos="zoom-in" data-aos-delay="300">
+                <i class="fas fa-globe-africa"></i>
+                <h3>Visit Us</h3>
+                <p>www.vantagers.co.ke</p>
+            </div>
+            <div class="info-card" data-aos="zoom-in" data-aos-delay="400">
+                <i class="fas fa-map-marker-alt"></i>
+                <h3>Our Locations</h3>
+                <p>Nairobi & Nyeri Offices</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Office Locations Section -->
+    <section class="office-locations">
+        <div class="office-grid">
+            <!-- Nairobi Office -->
+            <div class="office-card" data-aos="fade-up" data-aos-delay="100">
+                <img src="{{ url_for('static', filename='images/nairobi.jpg') }}" alt="Nairobi Office">
+                <div class="content">
+                    <h3>Nairobi Office</h3>
+                    <p>Rasi Gardens, 2nd Block</p>
+                    <p>Argwins Kodhek Close</p>
+                    <p>Off Argwins Kodhek Road</p>
+                    <p>Hurlingham</p>
+                </div>
+                <div class="map-container">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.8085999999997!2d36.79621431475391!3d-1.2928998359799998!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x182f10d7b3f3b3b5%3A0x3f0b5b5b5b5b5b5b!2sRasi%20Gardens%2C%20Argwings%20Kodhek%20Rd%2C%20Nairobi!5e0!3m2!1sen!2ske!4v1633083083083!5m2!1sen!2ske" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+            </div>
+            <!-- Nyeri Office -->
+            <div class="office-card" data-aos="fade-up" data-aos-delay="200">
+                <img src="{{ url_for('static', filename='images/nyeri.jpg') }}" alt="Nyeri Office">
+                <div class="content">
+                    <h3>Nyeri Office</h3>
+                    <p>Pamki House, 1st Floor</p> 
+                    <p>Suite No. 13, 14 & 16</p>
+                    <p>Kimathi Street</p>
+                    <p>Nyeri Town</p>
+                </div>
+                <div class="map-container">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3989.7229999999996!2d36.94721431475391!3d-0.4208998359799998!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1828a3b3b3b3b3b5%3A0x3f0b5b5b5b5b5b5b!2sPamki%20House%2C%20Kimathi%20St%2C%20Nyeri!5e0!3m2!1sen!2ske!4v1633083083083!5m2!1sen!2ske" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Inquiry Form Section -->
+    <section class="inquiry-form">
+        <div class="form-container" data-aos="fade-up" data-aos-delay="400">
+            <h2>Submit an Inquiry</h2>
+            <form action="{{ url_for('submit_inquiry') }}" method="POST">
+                <div class="form-group">
+                    <input type="text" id="name" name="name" required>
+                    <label for="name">Your Name</label>
+                    <i class="fas fa-user"></i>
+                </div>
+                <div class="form-group">
+                    <input type="email" id="email" name="email" required>
+                    <label for="email">Your Email</label>
+                    <i class="fas fa-envelope"></i>
+                </div>
+                <div class="form-group">
+                    <textarea id="message" name="message" rows="5" required></textarea>
+                    <label for="message">Your Message</label>
+                    <i class="fas fa-pencil-alt"></i>
+                </div>
+                <button type="submit" class="btn-primary">
+                    <span>Submit Inquiry</span>
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <p>&copy; 2025 Vantage Secretaries & Registrars. All rights reserved.</p>
+            <p>Website: <a href="https://www.vantagers.co.ke" target="_blank">www.vantagers.co.ke</a></p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 800,
+            easing: 'ease-in-out',
+            once: true
+        });
+    </script>
+</body>
+</html>

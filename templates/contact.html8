@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Vantage Secretaries & Registrars</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #003366;
+            --secondary: #FFD700;
+            --accent: #800000;
+            --light: #f8f9fa;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: var(--light);
+        }
+
+        /* Office Cards */
+        .office-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            padding: 2rem;
+        }
+
+        .office-card {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+
+        .office-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 12px rgba(0,0,0,0.2);
+        }
+
+        .office-header {
+            height: 200px;
+            position: relative;
+        }
+
+        .office-header img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .office-body {
+            padding: 1.5rem;
+        }
+
+        .office-body h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .office-body p {
+            color: #555;
+            margin: 0.5rem 0;
+        }
+
+        /* Contact Form */
+        .form-container {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .form-group {
+            position: relative;
+            margin-bottom: 1.5rem;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #eee;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-control:focus {
+            border-color: var(--secondary);
+            box-shadow: 0 0 0 2px rgba(255,215,0,0.3);
+        }
+
+        .form-label {
+            position: absolute;
+            top: 10px;
+            left: 12px;
+            color: #999;
+            transition: all 0.3s ease;
+            pointer-events: none;
+        }
+
+        .form-control:not(:placeholder-shown) + .form-label,
+        .form-control:focus + .form-label {
+            top: -10px;
+            left: 10px;
+            font-size: 0.8rem;
+            color: var(--secondary);
+            background: white;
+            padding: 0 4px;
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: transform 0.3s ease;
+            width: 100%;
+        }
+
+        .submit-btn:hover {
+            transform: scale(1.05);
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .office-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Office Locations -->
+    <section class="office-locations">
+        <div class="office-grid">
+            <!-- Nairobi Office -->
+            <div class="office-card">
+                <div class="office-header">
+                    <img src="{{ url_for('static', filename='images/nairobi.png') }}" alt="Nairobi Office">
+                </div>
+                <div class="office-body">
+                    <h3>Nairobi Office</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> Rasi Gardens, 2nd Block</p>
+                    <p>Argwins Kodhek Close</p>
+                    <p>Off Argwins Kodhek Road</p>
+                    <p>Hurlingham</p>
+                </div>
+            </div>
+
+            <!-- Nyeri Office -->
+            <div class="office-card">
+                <div class="office-header">
+                    <img src="{{ url_for('static', filename='images/nyeri.jpg') }}" alt="Nyeri Office">
+                </div>
+                <div class="office-body">
+                    <h3>Nyeri Office</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> Pamki House, 1st Floor</p>
+                    <p>Suite No. 13, 14 & 16</p>
+                    <p>Kimathi Street</p>
+                    <p>Nyeri Town</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Form -->
+    <div class="form-container">
+        <h2 class="text-center">Send Us a Message</h2>
+        <form>
+            <div class="form-group">
+                <input type="text" class="form-control" id="name" placeholder=" " required>
+                <label for="name" class="form-label">Your Name</label>
+            </div>
+            <div class="form-group">
+                <input type="email" class="form-control" id="email" placeholder=" " required>
+                <label for="email" class="form-label">Your Email</label>
+            </div>
+            <div class="form-group">
+                <textarea class="form-control" id="message" rows="5" placeholder=" " required></textarea>
+                <label for="message" class="form-label">Your Message</label>
+            </div>
+            <button type="submit" class="submit-btn">Submit <i class="fas fa-paper-plane"></i></button>
+        </form>
+    </div>
+</body>
+</html>

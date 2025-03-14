@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Vantage Secretaries & Registrars (VRS)</title>
+    
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    
+    <!-- AOS Animation Library -->
+    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+    
+    <!-- Font Awesome for Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    
+    <style>
+        /* Existing theme variables and styles remain the same */
+        :root {
+            --primary-color: #001F3F;
+            --secondary-color: #800000;
+            --accent-color: #FFD700;
+            --text-color: #fff;
+            --bg-color: #f9f9f9;
+        }
+
+        /* New Leadership Section Styles */
+        .leadership-section {
+            padding: 4rem 1rem;
+            background: var(--bg-color);
+        }
+
+        .leadership-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .leader-card {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            overflow: hidden;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .leader-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 20px rgba(0,0,0,0.2);
+        }
+
+        .leader-img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            border-bottom: 3px solid var(--accent-color);
+            transition: filter 0.3s;
+        }
+
+        .leader-content {
+            padding: 1.5rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .leader-content h3 {
+            color: var(--secondary-color);
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .title {
+            color: var(--accent-color);
+            font-weight: 500;
+            margin-bottom: 1rem;
+        }
+
+        .social-icons {
+            margin-bottom: 1.5rem;
+        }
+
+        .social-icons i {
+            color: var(--primary-color);
+            font-size: 1.2rem;
+            margin: 0 0.5rem;
+            transition: color 0.3s;
+        }
+
+        .social-icons i:hover {
+            color: var(--accent-color);
+        }
+
+        .bio {
+            line-height: 1.6;
+            color: #333;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+
+        .leader-card.flipped .bio {
+            max-height: 200px;
+            padding-top: 1rem;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .leader-img {
+                height: 250px;
+            }
+            
+            .leader-content h3 {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <header class="site-header">
+        <nav class="navbar">
+            <div class="logo">
+                <img src="{{ url_for('static', filename='images/logo.jpg') }}" alt="VRS Logo" class="logo-img">
+            </div>
+            <ul class="nav-links">
+                <li><a href="{{ url_for('home') }}">Home</a></li>
+                <li><a href="{{ url_for('about') }}" class="active">About</a></li>
+                <li><a href="{{ url_for('services') }}">Services</a></li>
+                <li><a href="{{ url_for('contact') }}">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="hero-content" data-aos="fade-up">
+            <h1>About Us</h1>
+            <p>Vantage Secretaries & Registrars (VRS) is a trusted partner in corporate governance, compliance, and secretarial services. Discover our mission, vision, and commitment to excellence.</p>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about-section" class="about-section">
+        <!-- Existing about content remains the same -->
+    </section>
+
+    <!-- Core Values Section -->
+    <section class="core-values-section">
+        <!-- Existing core values content remains the same -->
+    </section>
+
+    <!-- Leadership Section -->
+    <section class="leadership-section">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">Our Leadership</h2>
+            <div class="leadership-grid" data-aos="fade-up" data-aos-delay="200">
+                <!-- Joshua Profile -->
+                <div class="leader-card">
+                    <img src="{{ url_for('static', filename='images/joshua.jpg') }}" alt="Joshua Magua Kiboi" class="leader-img">
+                    <div class="leader-content">
+                        <h3>JOSHUA MAGUA KIBOI</h3>
+                        <p class="title">Managing Director</p>
+                        <div class="social-icons">
+                            <i class="fab fa-linkedin"></i>
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="bio">
+                            <p>Advocate of the High Court of Kenya, Commissioner for Oaths, Notaries Public & Certified Secretary. Accredited governance auditor, arbitrator, and certified mediator with expertise in corporate-commercial practice.</p>
+                            <p>Specializes in business start-ups, corporate governance, legal compliance, and forensic audits. Member of the Institute of Certified Secretaries and Law Society of Kenya.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Kendy Profile -->
+                <div class="leader-card">
+                    <img src="{{ url_for('static', filename='images/kendy.jpg') }}" alt="Kendy Mbatha" class="leader-img">
+                    <div class="leader-content">
+                        <h3>KENDY MBATHA</h3>
+                        <p class="title">Senior Legal Advisor</p>
+                        <div class="social-icons">
+                            <i class="fab fa-linkedin"></i>
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="bio">
+                            <p>Advocate of the High Court of Kenya, Commissioner for Oaths, Notaries Public, and Certified Legal Auditor. Specializes in Company Secretarial Services and Legal/Governance Audits.</p>
+                            <p>Over a decade of experience in Corporate Governance. Member of the Law Society of Kenya.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Irene Profile -->
+                <div class="leader-card">
+                    <img src="{{ url_for('static', filename='images/irene.jpg') }}" alt="Irene Njeri Kinyanjui" class="leader-img">
+                    <div class="leader-content">
+                        <h3>IRENE NJERI KINYANJUI</h3>
+                        <p class="title">Corporate Services Manager</p>
+                        <div class="social-icons">
+                            <i class="fab fa-linkedin"></i>
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="bio">
+                            <p>Advocate specializing in Corporate/Commercial Practice and Alternative Dispute Resolution. Certified Professional Mediator instrumental in company secretarial services.</p>
+                            <p>Assists startups with business registration and restructuring. Member of Law Society of Kenya & Mediation Training Institute East Africa (MTI).</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <p>&copy; 2025 Vantage Secretaries & Registrars (VRS). All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 800,
+            easing: 'ease-in-out',
+        });
+
+        // Leader card flip functionality
+        document.querySelectorAll('.leader-card').forEach(card => {
+            card.addEventListener('click', () => {
+                card.classList.toggle('flipped');
+            });
+        });
+
+        // Core values hover effects
+        document.querySelectorAll('.core-value-item').forEach(item => {
+            item.addEventListener('mouseenter', () => {
+                item.style.transform = 'scale(1.05)';
+            });
+            item.addEventListener('mouseleave', () => {
+                item.style.transform = 'scale(1)';
+            });
+        });
+    </script>
+</body>
+</html>

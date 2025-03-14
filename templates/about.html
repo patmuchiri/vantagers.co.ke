@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Vantage Secretaries & Registrars (VRS)</title>
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <!-- AOS Animation Library -->
+    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+    <!-- Font Awesome for Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <!-- Custom Script -->
+    <script src="{{ url_for('static', filename='js/scripts.js') }}" defer></script>
+    <style>
+        /* Navy Blue and Maroon Theme Styling */
+        :root {
+            --primary-color: #001F3F; /* Navy Blue */
+            --secondary-color: #800000; /* Maroon */
+            --accent-color: #FFD700; /* Gold */
+            --text-color: #fff;
+            --bg-color: #f9f9f9;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+
+        .site-header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 1rem 0;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        .logo-img {
+            height: 50px;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-color);
+        }
+
+        .nav-links a.active {
+            border-bottom: 2px solid var(--accent-color);
+        }
+
+        /* Responsive Navbar for Mobile */
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .nav-links {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+        }
+
+        /* Hero Section */
+        .hero-section {
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('{{ url_for("static", filename="images/hero-bg.jpg") }}');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            padding: 4rem 1rem;
+        }
+
+        .hero-section h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero-section p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* About Section */
+        .about-section {
+            background-color: var(--bg-color);
+            padding: 3rem 1rem;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 1.8rem;
+            margin-bottom: 2rem;
+            color: var(--primary-color);
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .about-card {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 1.5rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-align: center;
+        }
+
+        .about-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .about-card h3 {
+            font-size: 1.3rem;
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
+        }
+
+        .about-card p {
+            color: black; /* Black font for descriptions */
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Leadership Section */
+        .leadership-section {
+            background-color: var(--bg-color);
+            padding: 3rem 1rem;
+        }
+
+        .leadership-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .leader-card {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 1.5rem;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .leader-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .leader-card img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 1rem;
+        }
+
+        .leader-card h3 {
+            font-size: 1.5rem;
+            color: var(--secondary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .leader-card p {
+            color: black;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .leader-card .role {
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        /* Core Values Section */
+        .core-values-section {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 3rem 1rem;
+            text-align: center;
+        }
+
+        .core-values-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .core-values-title {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .core-values-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 0 auto;
+        }
+
+        .core-value-item {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 1.5rem;
+            text-align: left;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .core-value-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .core-value-item i {
+            font-size: 2rem;
+            color: var(--accent-color);
+            margin-bottom: 1rem;
+        }
+
+        .core-value-item h4 {
+            font-size: 1.2rem;
+            color: var(--accent-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .core-value-item p {
+            font-size: 0.9rem;
+        }
+
+        /* Footer */
+        .site-footer {
+            background-color: var(--primary-color);
+            color: white;
+            text-align: center;
+            padding: 1.5rem 0;
+        }
+
+        /* Responsive Footer for Mobile */
+        @media (max-width: 768px) {
+            .site-footer p {
+                font-size: 0.85rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <header class="site-header">
+        <nav class="navbar">
+            <div class="logo">
+                <img src="{{ url_for('static', filename='images/logo.jpg') }}" alt="VRS Logo" class="logo-img">
+            </div>
+            <ul class="nav-links">
+                <li><a href="{{ url_for('home') }}">Home</a></li>
+                <li><a href="{{ url_for('about') }}" class="active">About</a></li>
+                <li><a href="{{ url_for('services') }}">Services</a></li>
+                <li><a href="{{ url_for('contact') }}">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <h1>About Us</h1>
+        <p>Vantage Secretaries & Registrars (VRS) is a trusted partner in corporate governance, compliance, and secretarial services. Discover our mission, vision, and commitment to excellence.</p>
+    </section>
+
+    <!-- About Section -->
+    <section id="about-section" class="about-section">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">Who We Are</h2>
+            <div class="about-grid">
+                <!-- About Card 1 -->
+                <div class="about-card" data-aos="fade-up" data-aos-delay="100">
+                    <h3>Our Story</h3>
+                    <p>Vantage Secretaries & Registrars (VRS) is a leading provider of corporate governance, compliance, and secretarial services. We specialize in offering tailored solutions that help businesses maintain transparency, accountability, and ethical operations. Our expert team works with organizations to enhance governance structures, minimize risks, and ensure compliance with regulatory standards.</p>
+                </div>
+                <!-- About Card 2 -->
+                <div class="about-card" data-aos="fade-up" data-aos-delay="200">
+                    <h3>Our Mission</h3>
+                    <p>Our mission is to empower businesses by providing high-quality secretarial services that support corporate governance, regulatory compliance, and operational excellence. We are committed to building long-term relationships with our clients by delivering personalized services that help them thrive in today’s complex business environment.</p>
+                </div>
+                <!-- About Card 3 -->
+                <div class="about-card" data-aos="fade-up" data-aos-delay="300">
+                    <h3>Our Vision</h3>
+                    <p>Our vision is to be the most trusted partner for corporate governance and compliance, delivering innovative solutions that drive sustainable success for our clients and their stakeholders.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Leadership Section -->
+    <section class="leadership-section">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">Our Leadership</h2>
+            <div class="leadership-grid">
+                <!-- Joshua Magua Kiboi -->
+                <div class="leader-card" data-aos="fade-up" data-aos-delay="100">
+                    <img src="{{ url_for('static', filename='images/joshua.jpg') }}" alt="Joshua Magua Kiboi">
+                    <h3>Joshua Magua Kiboi</h3>
+                    <p class="role">Advocate | Certified Secretary | Governance Auditor</p>
+                    <p>Joshua is an Advocate of the High Court of Kenya, a Commissioner for Oaths, a Notaries Public & a Certified Secretary. He is also an accredited governance auditor, an arbitrator, and a certified mediator. He has enjoyed an illustrious career in corporate-commercial practice and has gained invaluable insight into corporate and commercial law, including business start-ups, corporate governance, legal compliance, and forensic audits. He is a member of the Institute of Certified Secretaries and the Law Society of Kenya.</p>
+                </div>
+
+                <!-- Kendy Mbatha -->
+                <div class="leader-card" data-aos="fade-up" data-aos-delay="200">
+                    <img src="{{ url_for('static', filename='images/kendy.jpg') }}" alt="Kendy Mbatha">
+                    <h3>Kendy Mbatha</h3>
+                    <p class="role">Advocate | Certified Legal Auditor</p>
+                    <p>Kendy is an Advocate of the High Court of Kenya, a Commissioner for Oaths, and a Notaries Public. She is also a Certified Legal Auditor. She has over the years gained experience in Company Secretarial Services, Legal and Governance Audits, as well as Corporate Governance. She is a member of the Law Society of Kenya.</p>
+                </div>
+
+                <!-- Irene Njeri Kinyanjui -->
+                <div class="leader-card" data-aos="fade-up" data-aos-delay="300">
+                    <img src="{{ url_for('static', filename='images/irene.jpg') }}" alt="Irene Njeri Kinyanjui">
+                    <h3>Irene Njeri Kinyanjui</h3>
+                    <p class="role">Advocate | Certified Mediator</p>
+                    <p>Irene is an Advocate whose keen interest lies in Corporate and Commercial Practice and Alternative Dispute Resolution. She is a Certified Professional Mediator. She is instrumental in company secretarial services as she has assisted many startups, both businesses and companies, to register their businesses and also restructure. She also assists in corporate services support and legal advisory services. She is a member of the Law Society of Kenya & Mediation Training Institute East Africa (MTI).</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Core Values Section -->
+    <section class="core-values-section">
+        <div class="core-values-container" data-aos="fade-up">
+            <h2 class="core-values-title">Our Core Values</h2>
+            <p style="font-size: 1rem; margin-bottom: 2rem;">
+                At VRS, our values guide everything we do and shape the way we deliver our services. We are committed to upholding the highest standards of professionalism, integrity, and excellence, ensuring that our clients receive solutions that drive lasting success.
+            </p>
+            <div class="core-values-list">
+                <!-- Core Value 1 -->
+                <div class="core-value-item" data-aos="zoom-in" data-aos-delay="100">
+                    <i class="fas fa-balance-scale"></i>
+                    <h4>Professionalism</h4>
+                    <p>We uphold the highest standards of professionalism in all our interactions and services.</p>
+                </div>
+                <!-- Core Value 2 -->
+                <div class="core-value-item" data-aos="zoom-in" data-aos-delay="200">
+                    <i class="fas fa-handshake"></i>
+                    <h4>Integrity</h4>
+                    <p>We operate with honesty, transparency, and ethical practices in every aspect of our work.</p>
+                </div>
+                <!-- Core Value 3 -->
+                <div class="core-value-item" data-aos="zoom-in" data-aos-delay="300">
+                    <i class="fas fa-rocket"></i>
+                    <h4>Innovation</h4>
+                    <p>We embrace innovation to deliver cutting-edge solutions that meet the evolving needs of our clients.</p>
+                </div>
+                <!-- Core Value 4 -->
+                <div class="core-value-item" data-aos="zoom-in" data-aos-delay="400">
+                    <i class="fas fa-users"></i>
+                    <h4>Client-Centric</h4>
+                    <p>We prioritize our clients' needs and strive to build long-term partnerships based on trust and value.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <p>&copy; 2025 Vantage Secretaries & Registrars. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- AOS Animation Script -->
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 800,
+            easing: 'ease-in-out',
+        });
+
+        // Add interactivity to leader cards
+        document.querySelectorAll('.leader-card').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.style.transform = 'scale(1.05)';
+            });
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'scale(1)';
+            });
+        });
+
+        // Add interactivity to core value items
+        document.querySelectorAll('.core-value-item').forEach(item => {
+            item.addEventListener('mouseenter', () => {
+                item.style.transform = 'scale(1.05)';
+            });
+            item.addEventListener('mouseleave', () => {
+                item.style.transform = 'scale(1)';
+            });
+        });
+    </script>
+</body>
+</html>

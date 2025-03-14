@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Services - Vantage Secretaries & Registrars (VRS)</title>
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <!-- AOS Animation Library -->
+    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+    <!-- Custom Script -->
+    <script src="{{ url_for('static', filename='js/scripts.js') }}" defer></script>
+    <style>
+        :root {
+            --primary-color: #001F3F; /* Navy Blue */
+            --secondary-color: #800000; /* Maroon */
+            --text-color: #fff;
+            --bg-color: #f9f9f9;
+            --accent-color: #FFD700; /* Gold */
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+
+        .site-header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 1rem 0;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        .logo-img {
+            height: 50px;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+        }
+
+        .nav-links a.active {
+            border-bottom: 2px solid var(--accent-color);
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .nav-links {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+        }
+
+        .hero-section {
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('{{ url_for("static", filename="images/hero-bg.jpg") }}');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            padding: 4rem 1rem;
+        }
+
+        .hero-content h1 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero-content p {
+            font-size: 1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        @media (max-width: 768px) {
+            .hero-content h1 {
+                font-size: 1.5rem;
+            }
+            .hero-content p {
+                font-size: 0.9rem;
+            }
+        }
+
+        .services-section {
+            background-color: var(--bg-color);
+            padding: 3rem 1rem;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 1.8rem;
+            margin-bottom: 2rem;
+            color: var(--primary-color);
+        }
+
+        .service-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .service-card {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 1.5rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-align: center;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .service-card h3 {
+            font-size: 1.3rem;
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
+        }
+
+        .service-card p,
+        .service-card ul {
+            color: black;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .service-card ul {
+            list-style: disc;
+            padding-left: 1.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .service-grid {
+                grid-template-columns: 1fr;
+            }
+            .service-card h3 {
+                font-size: 1.2rem;
+            }
+            .service-card p,
+            .service-card ul {
+                font-size: 0.85rem;
+            }
+        }
+
+        .professional-memberships {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 3rem 1rem;
+            text-align: center;
+        }
+
+        .professional-memberships h2 {
+            font-size: 1.8rem;
+            margin-bottom: 2rem;
+            color: var(--accent-color);
+        }
+
+        .membership-logos {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        .membership-logos img {
+            height: 130px;
+            transition: transform 0.3s ease;
+        }
+
+        .membership-logos img:hover {
+            transform: scale(1.1);
+        }
+
+        .site-footer {
+            background-color: var(--primary-color);
+            color: white;
+            text-align: center;
+            padding: 1.5rem 0;
+        }
+
+        @media (max-width: 700px) {
+            .site-footer p {
+                font-size: 0.85rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <header class="site-header">
+        <nav class="navbar">
+            <div class="logo">
+                <img src="{{ url_for('static', filename='images/logo.jpg') }}" alt="VRS Logo" class="logo-img">
+            </div>
+            <ul class="nav-links">
+                <li><a href="{{ url_for('home') }}">Home</a></li>
+                <li><a href="{{ url_for('about') }}">About</a></li>
+                <li><a href="{{ url_for('services') }}" class="active">Services</a></li>
+                <li><a href="{{ url_for('contact') }}">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="hero-content" data-aos="fade-up">
+            <h1>Our Services</h1>
+            <p>We provide tailored solutions to empower organizations to achieve compliance, enhance governance, and mitigate risks. Discover our core services that ensure operational excellence and build stakeholder trust.</p>
+        </div>
+    </section>
+
+    <!-- Key Services Section -->
+    <section id="services-section" class="services-section">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">What We Offer</h2>
+            <div class="service-grid">
+                <!-- Service Item 1 -->
+                <div class="service-card" data-aos="fade-up" data-aos-delay="100">
+                    <h3>Corporate Governance Audits</h3>
+                    <p>Ensuring transparency and accountability for your business.</p>
+                    <ul>
+                        <li>Comprehensive assessment of governance frameworks</li>
+                        <li>Identification of gaps in accountability</li>
+                        <li>Development of actionable recommendations</li>
+                    </ul>
+                </div>
+
+                <!-- Service Item 2 -->
+                <div class="service-card" data-aos="fade-up" data-aos-delay="200">
+                    <h3>Legal & Secretarial Audits</h3>
+                    <p>Scrutinizing processes to avoid risks and ensure compliance.</p>
+                    <ul>
+                        <li>Review of statutory obligations</li>
+                        <li>Examination of company secretarial records</li>
+                        <li>Risk identification and mitigation strategies</li>
+                    </ul>
+                </div>
+
+                <!-- Service Item 3 -->
+                <div class="service-card" data-aos="fade-up" data-aos-delay="300">
+                    <h3>Incorporation of Companies</h3>
+                    <p>Setting the right foundation for your business with seamless incorporation.</p>
+                    <ul>
+                        <li>Preparation and filing of incorporation documents</li>
+                        <li>Registration with relevant authorities</li>
+                        <li>Guidance on company structures</li>
+                    </ul>
+                </div>
+
+                <!-- Service Item 4 -->
+                <div class="service-card" data-aos="fade-up" data-aos-delay="400">
+                    <h3>Board Evaluations</h3>
+                    <p>Enhancing board performance and governance for strategic growth.</p>
+                    <ul>
+                        <li>Assessment of board composition and performance</li>
+                        <li>Recommendations for improvement and strategic planning</li>
+                        <li>Facilitating stakeholder engagement</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Professional Membership Section -->
+    <section class="professional-memberships">
+        <h2>Our Professional Membership</h2>
+        <div class="membership-logos" data-aos="zoom-in">
+            <img src="{{ url_for('static', filename='images/ics.jpg') }}" alt="ICS Logo">
+			<img src="{{ url_for('static', filename='images/lsk.png') }}" alt="LSK Logo">
+            <img src="{{ url_for('static', filename='images/icm.png') }}" alt="ICM Logo">
+            <img src="{{ url_for('static', filename='images/eals.png') }}" alt="EALS Logo">
+            <img src="{{ url_for('static', filename='images/kim.png') }}" alt="KIM Logo">
+            <img src="{{ url_for('static', filename='images/ciarb.png') }}" alt="CIARB Logo">
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <p>&copy; 2025 Vantage Secretaries & Registrars (VRS). All Rights Reserved.</p>
+    </footer>
+
+    <!-- AOS Animation Library Script -->
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 1000,
+        });
+    </script>
+</body>
+</html>
