@@ -32,9 +32,18 @@
         }
 
         .site-header {
-            background-color: var(--primary-color);
+            background-color: transparent; /* Fully transparent */
             color: white;
             padding: 1rem 0;
+            position: fixed; /* Keep the header fixed at the top */
+            width: 100%; /* Ensure the header spans the full width */
+            z-index: 1000; /* Ensure the header stays above other content */
+            transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+        }
+
+        /* Optional: Add a hover effect to make the header visible when needed */
+        .site-header:hover {
+            background-color: rgba(0, 31, 63, 0.7); /* Semi-transparent on hover */
         }
 
         .navbar {
@@ -48,12 +57,15 @@
 
         .logo-img {
             height: 50px;
+            width: auto; /* Ensure the logo scales properly */
         }
 
         .nav-links {
             list-style: none;
             display: flex;
             gap: 1.5rem;
+            margin: 0;
+            padding: 0;
         }
 
         .nav-links a {
@@ -71,15 +83,43 @@
             border-bottom: 2px solid var(--accent-color);
         }
 
+        /* Hamburger Menu for Mobile */
+        .hamburger {
+            display: none; /* Hidden by default */
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .hamburger .line {
+            width: 25px;
+            height: 3px;
+            background-color: white;
+            margin: 4px 0;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+
         /* Responsive Navbar for Mobile */
         @media (max-width: 768px) {
-            .navbar {
-                flex-direction: column;
-                align-items: flex-start;
+            .hamburger {
+                display: flex; /* Show hamburger menu on mobile */
             }
+
             .nav-links {
+                display: none; /* Hide nav links by default on mobile */
                 flex-direction: column;
                 gap: 0.5rem;
+                margin-top: 1rem;
+                background-color: rgba(0, 31, 63, 0.9); /* Semi-transparent background */
+                padding: 1rem;
+                border-radius: 5px;
+                position: absolute;
+                top: 70px; /* Adjust based on header height */
+                right: 1rem;
+                width: 200px;
+            }
+
+            .nav-links.active {
+                display: flex; /* Show nav links when hamburger is clicked */
             }
         }
 
@@ -281,7 +321,12 @@
             <div class="logo">
                 <img src="{{ url_for('static', filename='images/logo.jpg') }}" alt="VRS Logo" class="logo-img">
             </div>
-            <ul class="nav-links">
+            <div class="hamburger" onclick="toggleMenu()">
+                <div class="line"></div>
+                <div class="line"></div>
+                <div class="line"></div>
+            </div>
+            <ul class="nav-links" id="navLinks">
                 <li><a href="{{ url_for('home') }}">Home</a></li>
                 <li><a href="{{ url_for('about') }}" class="active">About</a></li>
                 <li><a href="{{ url_for('services') }}">Services</a></li>
@@ -403,25 +448,11 @@
             easing: 'ease-in-out',
         });
 
-        // Add interactivity to leader cards
-        document.querySelectorAll('.leader-card').forEach(card => {
-            card.addEventListener('mouseenter', () => {
-                card.style.transform = 'scale(1.05)';
-            });
-            card.addEventListener('mouseleave', () => {
-                card.style.transform = 'scale(1)';
-            });
-        });
-
-        // Add interactivity to core value items
-        document.querySelectorAll('.core-value-item').forEach(item => {
-            item.addEventListener('mouseenter', () => {
-                item.style.transform = 'scale(1.05)';
-            });
-            item.addEventListener('mouseleave', () => {
-                item.style.transform = 'scale(1)';
-            });
-        });
+        // Mobile Menu Toggle
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
     </script>
 </body>
 </html>
