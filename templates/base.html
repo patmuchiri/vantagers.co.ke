@@ -35,7 +35,7 @@
             background-color: transparent; /* Fully transparent */
             color: white;
             padding: 1rem 0;
-            position: fixed; /* Optional: To keep the header fixed at the top */
+            position: fixed; /* Keep the header fixed at the top */
             width: 100%; /* Ensure the header spans the full width */
             z-index: 1000; /* Ensure the header stays above other content */
             transition: background-color 0.3s ease; /* Smooth transition for hover effect */
@@ -57,12 +57,15 @@
 
         .logo-img {
             height: 50px;
+            width: auto; /* Ensure the logo scales properly */
         }
 
         .nav-links {
             list-style: none;
             display: flex;
             gap: 1.5rem;
+            margin: 0;
+            padding: 0;
         }
 
         .nav-links a {
@@ -84,11 +87,18 @@
         @media (max-width: 768px) {
             .navbar {
                 flex-direction: column;
-                align-items: flex-start;
+                align-items: center;
+                text-align: center;
             }
+
             .nav-links {
                 flex-direction: column;
                 gap: 0.5rem;
+                margin-top: 1rem;
+            }
+
+            .logo-img {
+                height: 40px; /* Smaller logo for mobile */
             }
         }
 
@@ -102,11 +112,12 @@
             background-color: var(--primary-color);
             color: white;
             text-align: center;
-            padding: 1.5rem 0;
+            padding: 1rem 0; /* Reduced padding for mobile */
         }
 
         .site-footer p {
             margin: 0;
+            font-size: 0.9rem; /* Smaller font size for mobile */
         }
 
         /* Responsive Footer for Mobile */
